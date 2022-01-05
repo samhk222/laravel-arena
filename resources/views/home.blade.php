@@ -9,6 +9,10 @@
 @section('content')
     <example-component></example-component>
     <p>Welcome to this beautiful admin panel.</p>
+
+    @can('is-admin')
+        Only admins can see this
+    @endcan
 @stop
 
 @section('js')
