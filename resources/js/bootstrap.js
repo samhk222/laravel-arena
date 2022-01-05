@@ -1,8 +1,14 @@
 window._ = require('lodash');
+window.$ = window.jQuery = require('jquery');
 
 try {
     require('bootstrap');
-} catch (e) {}
+} catch (e) {
+}
+
+require('overlayscrollbars');
+require('bootstrap');
+require('../../vendor/almasaeed2010/adminlte/dist/js/adminlte');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
