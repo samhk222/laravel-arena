@@ -7,6 +7,29 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+import GlobalsMixins from '@/vue/mixins/Globals';
+import VueTheMask from 'vue-the-mask'
+import money from 'v-money'
+import vmodal from 'vue-js-modal'
+
+Vue.use(VueTheMask);
+Vue.use(money, {precision: 2, decimal: ',', thousands: '.',});
+Vue.use(vmodal, {
+  dynamicDefaults: {
+    draggable: true,
+    resizable: true,
+    height: 'auto',
+    minHeight: 200
+  }
+})
+
+
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+
+
+Vue.use(VueSweetalert2);
 
 /**
  * The following block of code may be used to automatically register your
@@ -26,7 +49,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+Vue.mixin(GlobalsMixins);
 
 const app = new Vue({
     el: '#app',
 });
+
