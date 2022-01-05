@@ -68,10 +68,6 @@ RUN chown -R samhk222:samhk222 /run && \
     chown -R samhk222:samhk222 /var/log/nginx
 
 # Custom aliases
-RUN echo 'alias pa="php artisan "' >> "$ENV"
-RUN echo 'alias pf="clear && vendor/bin/phpunit --stop-on-failure --filter="' >> "$ENV"
-RUN echo 'alias nrw="npm run watch"' >> "$ENV"
-RUN echo 'alias nrh="npm run hot"' >> "$ENV"
 
 # RUN chown -R samhk222:samhk222 /var/www/html
 # Switch to use a non-root user from here on
@@ -79,7 +75,11 @@ RUN echo 'alias nrh="npm run hot"' >> "$ENV"
 # RUN echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel
 # RUN adduser samhk222 wheel
 
+COPY init.sh /root/init.sh
+RUN bash /root/init.sh
+
 USER samhk222
+
 
 # Add application
 WORKDIR /var/www/html/laravel-arena.local/
