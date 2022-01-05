@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS `blast` DEFAULT CHARACTER SET latin1 COLLATE utf8_general_ci;
+USE `blast`;

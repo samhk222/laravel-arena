@@ -1,0 +1,52 @@
+version: '3.3'
+services:
+  web:
+    build: .docker/web
+    container_name: 'ARENA-nginx'
+    volumes:
+      - .:/var/www/html/laravel-arena.local
+      - .env:/var/www/html/laravel-arena.local/.env
+      - web-build-node:/var/www/html/laravel-arena.local/node_modules
+      - ${PWD}/vendor/:/var/www/html/laravel-arena.local/vendor
+      - npm-cache:/root/.npm
+    ports:
+      - 80:80
+    links:
+      - mysql
+    depends_on:
+      - mailhog
+      - mysql
+    environment:
+        - VIRTUAL_HOST="laravel-arena.local"
+        - LOCALHOST_UID=1000
+        - LOCALHOST_USERNAME=${USER}
+        - XDEBUG_CONFIG=remote_host=172.20.129.2
+        - PHP_IDE_CONFIG="serverName=xdebug-docker"
+
+  mysql:
+    build: .docker/mysql
+    container_name: 'ARENA-mysql'
+    restart: 'always'
+    ports:
+      - "3377:3306"
+    volumes:
+      - .docker/mysql/data/:/var/lib/mysql/
+      - .docker/mysql/extra.cnf:/etc/mysql/conf.d/extra.cnf
+    environment:
+      MYSQL_DATABASE: blast
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_PASSWORD: ""
+    command: --default-authentication-plugin=mysql_native_password
+    cap_add:
+      - SYS_NICE # CAP_SYS_NICE
+
+  mailhog:
+    container_name: 'ARENA-mailhog'
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025 # smtp
+      - 8025:8025 # web
+
+volumes:
+  web-build-node:
+  npm-cache:
