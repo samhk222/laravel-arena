@@ -10,6 +10,8 @@ class Number extends BaseModel
         'number',
     ];
 
+    const NEW_STATUS = "Active";
+
     /*================================================================================================================*/
     /*==================== RELATIONSHIPS =============================================================================*/
     /*================================================================================================================*/
@@ -17,5 +19,11 @@ class Number extends BaseModel
     public function status()
     {
         return $this->belongsTo(Status::class);
+    }
+
+    /** * @return \Illuminate\Database\Eloquent\Relations\BelongsTo */
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

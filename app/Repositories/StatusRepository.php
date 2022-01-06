@@ -21,10 +21,11 @@ class StatusRepository extends Repository
     }
 
     /**
+     * @param string $type
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function customers()
+    public function filter(string $type)
     {
-        return $this->newQuery()->where('allow_customers', 1)->get();
+        return $this->newQuery()->where($type, 1)->get();
     }
 }

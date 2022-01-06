@@ -22,4 +22,9 @@ class Customer extends BaseModel
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function numbers()
+    {
+        return $this->hasMany(Number::class);
+    }
 }

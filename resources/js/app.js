@@ -42,10 +42,13 @@ Vue.use(VueSweetalert2);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('customers-index', require('./components/customers/Index.vue').default);
 Vue.component('customers-form', require('./components/customers/Form.vue').default);
 Vue.component('customers-list', require('./components/customers/List.vue').default);
+
+Vue.component('numbers-index', require('./components/numbers/Index.vue').default);
+Vue.component('numbers-form', require('./components/numbers/Form.vue').default);
+Vue.component('numbers-list', require('./components/numbers/List.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -6,7 +6,7 @@ use App\Repositories\CustomerRepository;
 use App\Repositories\StatusRepository;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class NumberController extends Controller
 {
     /**
      * Show the application dashboard.
@@ -15,8 +15,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $statuses = (new StatusRepository())->filter('allow_customers');
+        $statuses = (new StatusRepository())->filter('allow_numbers');
 
-        return view('customers.index', compact('statuses'));
+        return view('numbers.index', \compact('statuses'));
     }
 }

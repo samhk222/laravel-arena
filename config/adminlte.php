@@ -235,11 +235,15 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => false,
         ],
-
         [
             'text' => 'Customers',
             'url'  => '/customers',
             'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Numbers',
+            'url'  => '/numbers',
+            'icon' => 'fas fa-phone-square-alt',
         ],
         ['header' => 'ADMIN OPTIONS', 'can' => 'is-admin'],
         [

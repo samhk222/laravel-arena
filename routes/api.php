@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('/customers', class_basename(CustomerController::class));
+    Route::resource('/numbers', class_basename(NumberController::class));
 });

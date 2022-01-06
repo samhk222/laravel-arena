@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Api\V1\Customers\IndexRequest;
 use App\Http\Requests\Api\V1\Customers\StoreRequest;
 use App\Http\Requests\Api\V1\Customers\UpdateRequest;
 use App\Http\Resources\CustomerResource;
@@ -17,9 +18,9 @@ class CustomerController
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(Request $request)
+    public function index(IndexRequest $request)
     {
-        $customers = (new CustomerRepository())->filter($request->all());
+        $customers = (new CustomerRepository())->filter($request->validated());
 
         return CustomerResource::collection($customers);
     }

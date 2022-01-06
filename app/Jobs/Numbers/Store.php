@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Jobs\Customers;
+namespace App\Jobs\Numbers;
 
 use App\Models\Customer;
+use App\Models\Number;
 use App\Repositories\CustomerRepository;
+use App\Repositories\NumberRepository;
 use App\Repositories\StatusRepository;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,10 +15,7 @@ use Illuminate\Queue\SerializesModels;
 
 class Store implements ShouldQueue
 {
-    use Dispatchable;
-    use InteractsWithQueue;
-    use Queueable;
-    use SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * @var array
@@ -41,7 +40,7 @@ class Store implements ShouldQueue
      */
     public function handle()
     {
-        return (new CustomerRepository())->create($this->defineData());
+        return (new NumberRepository())->create($this->defineData());
     }
 
     /**
@@ -51,7 +50,7 @@ class Store implements ShouldQueue
     private function defineData()
     {
         return \array_merge($this->data, [
-            'status_id' => (new StatusRepository())->getIdByDescription(Customer::NEW_STATUS)
+            'status_id' => (new StatusRepository())->getIdByDescription(Number::NEW_STATUS)
         ]);
     }
 }

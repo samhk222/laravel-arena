@@ -2,7 +2,7 @@
     <div v-if="show" class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true" @click="messageActive = ''">×</button>
         <h5><i class="icon fas fa-ban"></i> Success</h5>
-        <li>{{ messageActive }}</li>
+        {{ messageActive }}
     </div>
 </template>
 <script>
