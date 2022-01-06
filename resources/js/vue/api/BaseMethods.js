@@ -2,10 +2,14 @@ import getData from "./utils/getData";
 import BaseConfigs from "./BaseConfigs";
 
 export default class BaseMethods extends BaseConfigs {
-    baseUrl;
+    baseUrl = '/api/v1';
 
     async index(params) {
         return this.api.get(this.baseUrl, {params}).then(getData);
+    }
+
+    async paginated(page=1, params){
+        return this.api.get(`${this.baseUrl}?page=${page}`, {params});
     }
 
     async get(id) {

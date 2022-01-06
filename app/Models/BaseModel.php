@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BaseModel extends Model
 {
     use SoftDeletes;
+
+    protected $dates = ['created_at'];
+
 }

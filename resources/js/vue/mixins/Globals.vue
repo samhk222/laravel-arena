@@ -6,19 +6,6 @@
     export default {
         name: "MixinGlobals",
         components: { Errors, Success },
-        filters: {
-            currency: function (value) {
-                const formatter = new Intl.NumberFormat("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                    minimumFractionDigits: 2,
-                });
-
-                let color = value < 0 ? "red" : "blue";
-
-                return `<font color='${color}'>${formatter.format(value)}</font>`;
-            },
-        },
         mixins: [],
         props: {
             defaultData: {
@@ -29,75 +16,60 @@
         data() {
             return {
                 Errors: [],
-                Success: "",
+                success_message: "",
                 editMode: false,
-                showSuccess: false,
-                record: [],
+                record: {},
+                records: {
+                    type: Object,
+                    default: () => {},
+                },
             };
         },
         computed: {
             saveEditLabel() {
-                return this.editMode ? "Atualizar" : "Cadastrar";
+                return this.editMode ? "Update" : "Create";
             },
-        },
-        watch: {
-            Success(newVal) {
-                if (newVal != "" || newVal != null) {
-                    this.showSuccess = true;
-                } else {
-                    this.showSuccess = false;
+            hasRecords() {
+                if (this.records.hasOwnProperty("data")) {
+                    return this.records.data.length > 0;
                 }
+                return this.records.length > 0;
             },
         },
+        watch: {},
         created() {
-            this.record["dt_record"] = moment(new Date()).format("YYYY-MM-DD");
             if (this.defaultData) {
                 this.record = this.defaultData;
             }
         },
         methods: {
+            findRecordById(id) {
+                return this.records.data.findIndex((el) => el.id === id);
+            },
             deleteByIndex(data, id) {
                 data.splice(
                     data.findIndex((el) => el.id === id),
                     1
                 );
             },
-
-            porcentagem(pPos, pEarned, formated) {
-                pPos = Math.abs(pPos);
-                pEarned = Math.abs(pEarned);
-                var perc = "0%";
-                if (isNaN(pPos) || isNaN(pEarned)) {
-                    perc = " ";
-                } else {
-                    perc = ((pEarned / pPos) * 100).toFixed(2);
-                }
-
-                if (formated) {
-                    return perc + "%";
-                }
-                return perc;
+            recordCreated(record) {
+                this.records.data.unshift(record);
+                this.editMode = false;
+            },
+            recordEdited(record) {
+                Vue.set(this.records.data, this.findRecordById(record.id), record);
+                this.editMode = false;
             },
             clearMessages() {
                 this.Errors = [];
-                this.showSuccess = false;
+                this.success_message = "";
             },
-            currency(value, format) {
-                const formatter = new Intl.NumberFormat("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                    minimumFractionDigits: 2,
-                });
-
-                if (format == true) {
-                    let color = value < 0 ? "red" : "blue";
-                    return `<font color='${color}'>${formatter.format(value)}</font>`;
+            clearObject() {
+                for (var prop in this.record) {
+                    if (this.record.hasOwnProperty(prop)) {
+                        this.record[prop] = "";
+                    }
                 }
-                return formatter.format(value);
-            },
-            convertDbDateToPtBr(date, inputformat = "YYYY-MM-DD HH:mm:ss", outputformat = "DD/MM/YYYY") {
-                let converted_date = moment(date, inputformat);
-                return converted_date.format(outputformat);
             },
         },
     };

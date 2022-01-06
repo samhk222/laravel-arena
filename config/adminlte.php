@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url'      => false,
-    'dashboard_url'      => 'home',
+    'dashboard_url'      => '/',
     'logout_url'         => 'logout',
     'login_url'          => 'login',
     'register_url'       => 'register',
@@ -238,7 +238,7 @@ return [
 
         [
             'text' => 'Customers',
-            'url'  => 'customers',
+            'url'  => '/customers',
             'icon' => 'fas fa-fw fa-user',
         ],
         ['header' => 'ADMIN OPTIONS', 'can' => 'is-admin'],
