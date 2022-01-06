@@ -1,48 +1,69 @@
-version: '3.3'
+# For more information: https://laravel.com/docs/sail
+version: '3'
 services:
-  web:
-    build: .docker/web
-    container_name: 'ARENA-nginx'
-    volumes:
-      - .:/var/www/html/laravel-arena.local
-      - .env:/var/www/html/laravel-arena.local/.env
-      - web-build-node:/var/www/html/laravel-arena.local/node_modules
-      - ${PWD}/vendor/:/var/www/html/laravel-arena.local/vendor
-      - npm-cache:/root/.npm
-    ports:
-      - 80:80
-    links:
-      - mysql
-    depends_on:
-      - mailhog
-      - mysql
-    environment:
-        - VIRTUAL_HOST="laravel-arena.local"
+    web:
+        build: .docker/.
+        container_name: 'ARENA-nginx'
+        ports:
+            - 80:80
+        environment:
+            WEBROOT: '/var/www/html/public'
+            CREATE_LARAVEL_STORAGE: '1'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+        links:
+          - mysql
+        depends_on:
+          - mailhog
+          - mysql
 
-  mysql:
-    build: .docker/mysql
-    container_name: 'ARENA-mysql'
-    restart: 'always'
-    ports:
-      - "3377:3306"
-    volumes:
-      - .docker/mysql/data/:/var/lib/mysql/
-      - .docker/mysql/extra.cnf:/etc/mysql/conf.d/extra.cnf
-    environment:
-      MYSQL_DATABASE: blast
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
-      MYSQL_PASSWORD: ""
-    command: --default-authentication-plugin=mysql_native_password
-    #cap_add:
-    #  - SYS_NICE # CAP_SYS_NICE
+    mysql:
+        image: 'mariadb:10'
+        container_name: 'ARENA-mysql'
+        ports:
+          - "3377:3306"
+        volumes:
+            - 'sailmysql:/var/lib/mysql'
+        environment:
+          MYSQL_DATABASE: blast
+          MYSQL_ALLOW_EMPTY_PASSWORD: 1
+          MYSQL_PASSWORD: ""
+        networks:
+            - sail
+        security_opt:
+            - seccomp:unconfined
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping"]
 
-  mailhog:
-    container_name: 'ARENA-mailhog'
-    image: mailhog/mailhog
-    ports:
-      - 1025:1025 # smtp
-      - 8025:8025 # web
+    redis:
+        container_name: 'ARENA-redis'
+        image: 'redis:alpine'
+        #ports:
+        #    - '${FORWARD_REDIS_PORT:-6379}:6379'
+        volumes:
+            - 'sailredis:/data'
+        networks:
+            - sail
+        healthcheck:
+          test: ["CMD", "redis-cli", "ping"]
+
+    mailhog:
+        image: 'mailhog/mailhog:latest'
+        container_name: 'ARENA-mailhog'
+        ports:
+            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
+            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+        networks:
+            - sail
+
+networks:
+    sail:
+        driver: bridge
 
 volumes:
-  web-build-node:
-  npm-cache:
+    sailmysql:
+        driver: local
+    sailredis:
+        driver: local
