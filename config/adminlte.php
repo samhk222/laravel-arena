@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo'              => '<b>Admin</b>LTE',
-    'logo_img'          => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo'              => 'Laravel <b>Arena</b>',
+    'logo_img'          => '/images/phone-icon.svg',
     'logo_img_class'    => 'brand-image img-circle elevation-3',
     'logo_img_xl'       => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -236,12 +236,6 @@ return [
             'topnav_right' => false,
         ],
 
-        // Sidebar items:
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
         [
             'text' => 'Customers',
             'url'  => 'customers',
@@ -253,11 +247,6 @@ return [
             'url'  => 'settings',
             'icon' => 'fas fa-cogs',
             'can'  => 'is-admin'
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
         ],
         [
             'text'    => 'multilevel',
