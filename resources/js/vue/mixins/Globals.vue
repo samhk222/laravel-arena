@@ -1,11 +1,12 @@
 <script>
     import Errors from "@/vue/shared/Errors";
     import Success from "@/vue/shared/Success";
+    import LoadingBar from "@/vue/shared/LoadingBar";
     import moment from "moment";
 
     export default {
         name: "MixinGlobals",
-        components: { Errors, Success },
+        components: { Errors, Success, LoadingBar },
         mixins: [],
         props: {
             defaultData: {

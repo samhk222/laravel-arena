@@ -19,7 +19,7 @@ class CustomerController
      */
     public function index(Request $request)
     {
-        $customers = (new CustomerRepository())->paginate($request->get('page') ?? 1);
+        $customers = (new CustomerRepository())->filter($request->all());
 
         return CustomerResource::collection($customers);
     }

@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->to('/login');
+    return redirect()->to('/dashboard');
 });
 
-Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('home');
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
 });
+
+Auth::routes();

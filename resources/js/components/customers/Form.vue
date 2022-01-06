@@ -57,6 +57,7 @@
         },
         created() {
             EventBus.$on("CUSTOMER_EDIT", (id) => {
+                this.clearMessages();
                 CustomerApi.get(id).then(({ data }) => {
                     this.record = data;
                     this.editMode = true;

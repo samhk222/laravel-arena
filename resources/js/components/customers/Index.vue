@@ -8,16 +8,39 @@
         components: { pagination },
         mixins: [],
         data() {
-            return {};
+            return {
+                searchInput: null,
+                isLoading: false,
+            };
         },
         created() {
             this.getResults();
         },
+        watch: {
+            searchInput: function () {
+                this.isLoading = true;
+                this.debounceInput();
+            },
+        },
         methods: {
+            debounceInput: _.debounce(function () {
+                CustomerApi.index({ term: this.searchInput })
+                    .then((r) => {
+                        this.records = r.data;
+                    })
+                    .finally((r) => {
+                        this.isLoading = false;
+                    });
+            }, 500),
             getResults(page = 1) {
-                CustomerApi.paginated(page).then((response) => {
-                    this.records = response.data;
-                });
+                this.isLoading = true;
+                CustomerApi.paginated(page)
+                    .then((response) => {
+                        this.records = response.data;
+                    })
+                    .finally((r) => {
+                        this.isLoading = false;
+                    });
             },
         },
     };

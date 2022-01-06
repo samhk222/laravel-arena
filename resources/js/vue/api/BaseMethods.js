@@ -5,7 +5,7 @@ export default class BaseMethods extends BaseConfigs {
     baseUrl = '/api/v1';
 
     async index(params) {
-        return this.api.get(this.baseUrl, {params}).then(getData);
+        return this.api.get(this.baseUrl, {params});
     }
 
     async paginated(page=1, params){
