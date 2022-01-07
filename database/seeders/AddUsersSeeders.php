@@ -23,7 +23,7 @@ class AddUsersSeeders extends Seeder
     {
         return [
             [
-                'email'    => 'admin@admin',
+                'email'    => 'admin@admin.com',
                 'name'     => 'Admin',
                 'type'     => 'admin',
                 'password' => \bcrypt('asdasd'),

@@ -26,6 +26,6 @@ class CustomerRepository extends Repository
             });
         });
 
-        return $items->paginate(20, '*', '', $filter->get('page') ?? 1);
+        return $items->orderBy('name')->paginate(20, '*', '', $filter->get('page') ?? 1);
     }
 }
