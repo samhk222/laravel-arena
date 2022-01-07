@@ -56,4 +56,11 @@ class CustomerController
 
         return new CustomerResource($customer->refresh());
     }
+
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
+
+        return response()->json(['msg' => "Customer deleted"]);
+    }
 }

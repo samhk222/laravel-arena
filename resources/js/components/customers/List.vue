@@ -9,8 +9,9 @@
                     <th width="*">Document</th>
                     <th width="10%">Status</th>
                     <th width="5%">Created at</th>
-                    <th width="1%" nowrap>Phones</th>
-                    <th width="1%" nowrap>Edit</th>
+                    <th width="2%" class="text-center" nowrap>Phones</th>
+                    <th width="2%" class="text-center" nowrap>Edit</th>
+                    <th width="2%" class="text-center" nowrap>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,12 @@
                             <i class="fas fa-pen-square fa-stack-1x"></i>
                         </span>
                     </td>
+                    <td class="text-center pointer" @click="openDelete(customer)">
+                        <span class="fa-stack fa-1x pointer delete">
+                            <i class="far fa-square fa-stack-2x"></i>
+                            <i class="fas fa-trash-alt fa-stack-1x"></i>
+                        </span>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -40,6 +47,8 @@
 <script>
     import EventBus from "@/event-bus";
     import LoadingBar from "../../vue/shared/LoadingBar.vue";
+    import CustomerDeleteModal from "@/modais/customer/Delete.vue";
+
     export default {
         name: "CustomerList",
         props: {
@@ -52,7 +61,7 @@
                 default: () => {},
             },
         },
-        components: { LoadingBar },
+        components: { LoadingBar, CustomerDeleteModal },
         mixins: [],
         data() {
             return {};
@@ -64,6 +73,15 @@
             },
             goToNumberEdit(customerId) {
                 window.location = `/customers/${customerId}/numbers`;
+            },
+            openDelete(customer) {
+                this.$modal.show(
+                    CustomerDeleteModal,
+                    {
+                        customer: customer,
+                    },
+                    { width: 800, scrollable: true, height: 300 }
+                );
             },
         },
     };

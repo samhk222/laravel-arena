@@ -1,6 +1,7 @@
 <script>
     import CustomerApi from "@/vue/api/endpoints/Customers";
     import pagination from "laravel-vue-pagination";
+    import EventBus from "@/event-bus";
 
     export default {
         name: "CustomerIndex",
@@ -15,6 +16,9 @@
         },
         created() {
             this.getResults();
+            EventBus.$on("DESTROY_CUSTOMER", (customer) => {
+                this.deleteByIndex(this.records.data, customer.id);
+            });
         },
         watch: {
             searchInput: function () {
