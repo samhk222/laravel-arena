@@ -14,5 +14,9 @@ export default function handleErrors(error) {
             .filter((x, i, arr) => arr.indexOf(x) === i);
     }
 
+    if (error.response.status === 403) {
+        messageError = ["Only admins can perform this action"];
+    }
+
     return Promise.reject(messageError);
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerNumberController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NumberController;
+use App\Repositories\NumberRepository;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $number = (new NumberRepository())->find(9);
+    dd($number->number_preferences);
+
+
     return redirect()->to('/dashboard');
 });
 

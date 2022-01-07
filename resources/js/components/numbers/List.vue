@@ -10,6 +10,7 @@
                     <th width="10%">Status</th>
                     <th width="5%">Created at</th>
                     <th width="1%" nowrap>Edit</th>
+                    <th width="1%" nowrap>Preferences</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,12 @@
                             <i class="fas fa-pen-square fa-stack-1x"></i>
                         </span>
                     </td>
+                    <td class="text-center pointer" @click="openPreferences(number)">
+                        <span class="fa-stack fa-1x pointer">
+                            <i class="far fa-square fa-stack-2x"></i>
+                            <i class="fas fa-broadcast-tower fa-stack-1x"></i>
+                        </span>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -33,6 +40,9 @@
 <script>
     import EventBus from "@/event-bus";
     import LoadingBar from "../../vue/shared/LoadingBar.vue";
+    import NumberPreferenceModal from "@/modais/number-preferences/Index.vue";
+    import NumberApi from "@/vue/api/endpoints/Numbers";
+
     export default {
         name: "NumberList",
         props: {
@@ -45,13 +55,26 @@
                 default: () => {},
             },
         },
-        components: { LoadingBar },
+        components: { LoadingBar, NumberPreferenceModal },
         mixins: [],
         data() {
             return {};
         },
         created() {},
         methods: {
+            openPreferences(number) {
+                NumberApi.preferences(number.id).then((response) => {
+                    console.log("response.data", response.data);
+                    this.$modal.show(
+                        NumberPreferenceModal,
+                        {
+                            items: response.data,
+                            number: number,
+                        },
+                        { width: 800, scrollable: true, height: 500 }
+                    );
+                });
+            },
             emitEdit(id) {
                 EventBus.$emit("NUMBER_EDIT", id);
             },

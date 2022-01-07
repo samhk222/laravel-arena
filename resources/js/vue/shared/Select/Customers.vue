@@ -1,21 +1,25 @@
 <template>
     <div>
-        <select v-model="categoria_id" class="form-control">
-            <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{ categoria.descricao }}</option>
-        </select>
+        <treeselect v-model="categoria_id" :multiple="false" :options="categorias" placeholder="Escolha" />
     </div>
 </template>
 <script>
     import CategoriasApi from "@/vue/api/endpoints/Categorias";
+    import Treeselect from "@riophae/vue-treeselect";
+    import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 
     export default {
-        name: "SelectBancos",
-        components: {},
+        name: "SharedCategorias",
+        components: { Treeselect },
         mixins: [],
         props: {
             default: {
                 type: Number,
                 default: 0,
+            },
+            scheme: {
+                type: String,
+                default: "",
             },
         },
         data() {
@@ -37,8 +41,7 @@
         },
         methods: {
             getRecords() {
-                this.categorias.push({ id: null });
-                CategoriasApi.genericIndex("bancos").then((response) => {
+                CategoriasApi.treeView({ scheme: this.scheme || null }).then((response) => {
                     response.data.forEach((element) => {
                         this.categorias.push(element);
                     });

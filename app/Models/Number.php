@@ -26,4 +26,9 @@ class Number extends BaseModel
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function number_preferences()
+    {
+        return $this->hasMany(NumberPreference::class);
+    }
 }

@@ -54,7 +54,6 @@
                 );
             },
             recordCreated(record) {
-                console.log(record);
                 this.records.data.unshift(record);
                 this.editMode = false;
             },

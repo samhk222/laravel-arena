@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\V1\Numbers\IndexRequest;
 use App\Http\Requests\Api\V1\Numbers\StoreRequest;
 use App\Http\Requests\Api\V1\Numbers\UpdateRequest;
+use App\Http\Resources\NumberPreferencesResource;
 use App\Http\Resources\NumberResource;
 use App\Jobs\Numbers\Store;
 use App\Models\Number;
@@ -57,5 +58,14 @@ class NumberController
         $number->update($request->validated());
 
         return new NumberResource($number->refresh());
+    }
+
+    /**
+     * @param Number $number
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function preferences(Number $number)
+    {
+        return NumberPreferencesResource::collection($number->number_preferences);
     }
 }

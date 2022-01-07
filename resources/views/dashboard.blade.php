@@ -7,7 +7,6 @@
 @stop
 
 @section('content')
-    <example-component></example-component>
     <p>Welcome to this beautiful admin panel.</p>
 
     @can('is-admin')

@@ -7,11 +7,11 @@
 @stop
 
 @section('content')
-    <numbers-index :customer-id="{{ isset($customer) ? 1 : 'null'}}" inline-template>
+    <numbers-index :customer-id="{{ isset($customer) ? $customer->id : 'null'}}" inline-template>
         <div>
             <x-card title="Numbers">
                 <numbers-form @created="recordCreated" @edited="recordEdited"
-                              :customer-id="{{isset($customer) ? 1: 'null'}}"
+                              :customer-id="{{isset($customer) ? $customer->id: 'null'}}"
                               :statuses='@json($statuses)'></numbers-form>
             </x-card>
 
@@ -32,7 +32,7 @@
                 </div>
 
                 <div v-else>
-                    No records found
+                    No numbers found
                 </div>
 
             </x-card>

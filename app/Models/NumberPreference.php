@@ -14,8 +14,8 @@ class NumberPreference extends BaseModel
     /*==================== RELATIONSHIPS =============================================================================*/
     /*================================================================================================================*/
     /** * @return \Illuminate\Database\Eloquent\Relations\BelongsTo */
-    public function status()
+    public function number()
     {
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(Number::class);
     }
 }
