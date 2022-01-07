@@ -4,7 +4,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerNumberController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NumberController;
-use App\Repositories\NumberRepository;
+use App\Models\Customer;
+use App\Models\Number;
 use Illuminate\Support\Facades\Route;
 
 /*

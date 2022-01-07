@@ -215,11 +215,8 @@ class Repository
         return $this->newQuery()->withTrashed()->max('id');
     }
 
-    /**
-     * @return int
-     */
-    public function nextId()
+    public function count()
     {
-        return $this->latestId() + 1;
+        return $this->newQuery()->count();
     }
 }
