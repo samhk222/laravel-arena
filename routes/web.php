@@ -19,10 +19,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $number = (new NumberRepository())->find(9);
-    dd($number->number_preferences);
-
-
     return redirect()->to('/dashboard');
 });
 

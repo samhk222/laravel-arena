@@ -65,9 +65,9 @@
                 this.Errors = [];
                 this.success_message = "";
             },
-            clearObject() {
+            clearObject(except) {
                 for (var prop in this.record) {
-                    if (this.record.hasOwnProperty(prop)) {
+                    if (this.record.hasOwnProperty(prop) && prop != except) {
                         this.record[prop] = "";
                     }
                 }

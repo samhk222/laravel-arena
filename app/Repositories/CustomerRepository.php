@@ -21,6 +21,9 @@ class CustomerRepository extends Repository
             $builder->orWhereHas('status', function (Builder $builder) use ($filter) {
                 $builder->where('description', 'like', '%' . $filter->get('term') . '%');
             });
+            $builder->orWhereHas('numbers', function (Builder $builder) use ($filter) {
+                $builder->where('number', 'like', '%' . $filter->get('term') . '%');
+            });
         });
 
         return $items->paginate(20, '*', '', $filter->get('page') ?? 1);

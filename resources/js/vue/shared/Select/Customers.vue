@@ -1,52 +1,47 @@
 <template>
     <div>
-        <treeselect v-model="categoria_id" :multiple="false" :options="categorias" placeholder="Escolha" />
+        <treeselect v-model="customer_id" :multiple="false" :clearable="false" :async="true" :load-options="loadOptions" search-prompt-text="Type customer name or phone ..." />
     </div>
 </template>
 <script>
-    import CategoriasApi from "@/vue/api/endpoints/Categorias";
-    import Treeselect from "@riophae/vue-treeselect";
+    import CustomerApi from "@/vue/api/endpoints/Customers";
+    import { ASYNC_SEARCH, Treeselect } from "@riophae/vue-treeselect";
     import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 
     export default {
-        name: "SharedCategorias",
+        name: "SharedCustomers",
         components: { Treeselect },
         mixins: [],
-        props: {
-            default: {
-                type: Number,
-                default: 0,
-            },
-            scheme: {
-                type: String,
-                default: "",
-            },
-        },
+        props: {},
         data() {
             return {
-                categorias: [],
-                categoria_id: null,
+                customers: [],
+                customer_id: null,
             };
         },
         watch: {
-            categoria_id(newVal) {
+            customer_id(newVal) {
                 this.$emit("change", newVal);
             },
-            default(newVal) {
-                this.categoria_id = newVal;
-            },
         },
-        created() {
-            this.getRecords();
-        },
+        created() {},
         methods: {
-            getRecords() {
-                CategoriasApi.treeView({ scheme: this.scheme || null }).then((response) => {
-                    response.data.forEach((element) => {
-                        this.categorias.push(element);
-                    });
-                    this.categoria_id = this.default;
-                });
+            loadOptions({ action, searchQuery, callback }) {
+                if (action === ASYNC_SEARCH) {
+                    setTimeout(() => {
+                        CustomerApi.index({ term: searchQuery })
+                            .then((response) => {
+                                const options = response.data.data.map((i) => ({
+                                    id: `${i.id}`,
+                                    label: `${i.name}`,
+                                }));
+                                callback(null, options);
+                            })
+                            .catch((e) => {
+                                this.Errors = e;
+                            });
+                    }, 300);
+                }
             },
         },
     };

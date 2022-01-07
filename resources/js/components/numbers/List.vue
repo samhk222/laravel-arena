@@ -64,7 +64,7 @@
         methods: {
             openPreferences(number) {
                 NumberApi.preferences(number.id).then((response) => {
-                    console.log("response.data", response.data);
+                    this.clearMessages();
                     this.$modal.show(
                         NumberPreferenceModal,
                         {

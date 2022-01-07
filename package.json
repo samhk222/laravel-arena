@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.4",
+        "@riophae/vue-treeselect": "^0.4.0",
         "icheck-bootstrap": "^3.0.1",
         "jquery": "^3.6.0",
         "laravel-vue-pagination": "^2.3.1",

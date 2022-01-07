@@ -9,7 +9,7 @@
         <div class="form-row">
             <div class="col-md-6" v-if="!customerWasInputed">
                 <label>Customer</label>
-                <input type="text" class="form-control" v-model="record.customer_id" />
+                <customers-select @change="record.customer_id = $event"></customers-select>
             </div>
             <div :class="[!customerWasInputed ? 'col-md-6' : 'col-md-12']">
                 <label>Number</label>
@@ -35,7 +35,7 @@
 <script>
     import NumberApi from "@/vue/api/endpoints/Numbers";
     import EventBus from "@/event-bus";
-
+    import CustomersSelect from "@/vue/shared/Select/Customers.vue";
     export default {
         name: "NumberForm",
         props: {
@@ -48,7 +48,7 @@
                 default: () => [],
             },
         },
-        components: {},
+        components: { CustomersSelect },
         computed: {
             customerWasInputed() {
                 return this.customerId !== null;
@@ -81,7 +81,7 @@
                     NumberApi.store(this.record)
                         .then((response) => {
                             this.$emit("created", response.data);
-                            this.clearObject();
+                            this.clearObject("customer_id");
                             this.success_message = "Number created";
                         })
                         .catch((e) => {
