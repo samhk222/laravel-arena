@@ -11,7 +11,7 @@
                     <th width="5%">Created at</th>
                     <th width="2%" class="text-center" nowrap>Phones</th>
                     <th width="2%" class="text-center" nowrap>Edit</th>
-                    <th width="2%" class="text-center" nowrap>Edit</th>
+                    <th width="2%" class="text-center" nowrap>Delete</th>
                 </tr>
             </thead>
             <tbody>

@@ -3,20 +3,19 @@
         <h3>Delete number: {{ number.number }}</h3>
         <div class="form-row mb-2">
             <div class="col">
-                to confirm the deletion, you must enter the number (<strong>{{ number.number }}</strong
-                >) on the form field.
+                to confirm the deletion, you must enter the number <strong>{{ number.number }}</strong> in the form field.
             </div>
         </div>
         <div class="form-row mb-2">
             <div class="col">
                 <label>Number</label>
-                <input type="text" v-mask="'##-####'" v-model="record.value" class="form-control" />
+                <input type="text" v-mask="mask" v-model="record.value" class="form-control" />
             </div>
         </div>
         <div class="form-row mb-2">
             <div class="col text-right">
                 <label for="">&nbsp;</label><br />
-                <input :disabled="disableButton" type="button" value="Excluir" class="btn btn-danger" @click="destroy" />
+                <input :disabled="disableButton" type="button" value="Delete" class="btn btn-danger" @click="destroy" />
             </div>
         </div>
     </div>
@@ -33,6 +32,10 @@
             number: {
                 type: Object,
                 default: () => {},
+            },
+            mask: {
+                type: String,
+                default: "",
             },
         },
         data() {

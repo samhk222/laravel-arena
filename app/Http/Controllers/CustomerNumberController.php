@@ -16,8 +16,9 @@ class CustomerNumberController extends Controller
      */
     public function index(Customer $customer)
     {
-        $statuses = (new StatusRepository())->filter('allow_numbers');
+        $statuses    = (new StatusRepository())->filter('allow_numbers');
+        $number_mask = \config('custom.mask');
 
-        return \view('numbers.index', \compact('customer', 'statuses'));
+        return \view('numbers.index', \compact('customer', 'statuses', 'number_mask'));
     }
 }

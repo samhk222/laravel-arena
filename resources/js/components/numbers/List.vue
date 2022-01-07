@@ -62,6 +62,10 @@
                 type: Object,
                 default: () => {},
             },
+            mask: {
+                type: String,
+                default: "",
+            },
         },
         components: { LoadingBar, NumberPreferenceModal, NumberDeleteModal },
         mixins: [],
@@ -87,6 +91,7 @@
                     NumberDeleteModal,
                     {
                         number: number,
+                        mask: this.mask,
                     },
                     { width: 800, scrollable: true, height: 300 }
                 );

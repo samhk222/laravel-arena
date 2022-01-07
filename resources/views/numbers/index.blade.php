@@ -11,6 +11,7 @@
         <div>
             <x-card title="Numbers">
                 <numbers-form @created="recordCreated" @edited="recordEdited"
+                              :mask="'{{ $number_mask }}'"
                               :customer-id="{{isset($customer) ? $customer->id: 'null'}}"
                               :statuses='@json($statuses)'></numbers-form>
             </x-card>
@@ -25,7 +26,7 @@
                 </div>
 
                 <div v-if="hasRecords">
-                    <numbers-list :numbers="records" :loading="isLoading"></numbers-list>
+                    <numbers-list :numbers="records" :loading="isLoading" :mask="'{{ $number_mask }}'"></numbers-list>
 
                     <pagination align="center" :data='records' @pagination-change-page="getResults" v-if="!isLoading"
                                 class="mb-2"></pagination>

@@ -16,7 +16,7 @@
         <div class="form-row mb-2">
             <div class="col text-right">
                 <label for="">&nbsp;</label><br />
-                <input :disabled="disableButton" type="button" value="Excluir" class="btn btn-danger" @click="destroy" />
+                <input :disabled="disableButton" type="button" value="Delete" class="btn btn-danger" @click="destroy" />
             </div>
         </div>
     </div>

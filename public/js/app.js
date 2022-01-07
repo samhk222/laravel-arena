@@ -10035,6 +10035,10 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return [];
       }
+    },
+    mask: {
+      type: String,
+      "default": ""
     }
   },
   components: {
@@ -10043,6 +10047,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     customerWasInputed: function customerWasInputed() {
       return this.customerId !== null && this.record.customer_id !== null;
+    },
+    maxSize: function maxSize() {
+      return this.mask.length;
     }
   },
   mixins: [],
@@ -10260,6 +10267,10 @@ __webpack_require__.r(__webpack_exports__);
     numbers: {
       type: Object,
       "default": function _default() {}
+    },
+    mask: {
+      type: String,
+      "default": ""
     }
   },
   components: {
@@ -10289,7 +10300,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     openDelete: function openDelete(number) {
       this.$modal.show(_modais_number_Delete_vue__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        number: number
+        number: number,
+        mask: this.mask
       }, {
         width: 800,
         scrollable: true,
@@ -10500,7 +10512,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -10511,6 +10522,10 @@ __webpack_require__.r(__webpack_exports__);
     number: {
       type: Object,
       "default": function _default() {}
+    },
+    mask: {
+      type: String,
+      "default": ""
     }
   },
   data: function data() {
@@ -80285,7 +80300,7 @@ var render = function () {
                       staticClass: "text-center",
                       attrs: { width: "2%", nowrap: "" },
                     },
-                    [_vm._v("Edit")]
+                    [_vm._v("Delete")]
                   ),
                 ]),
               ]),
@@ -80682,12 +80697,12 @@ var render = function () {
               {
                 name: "mask",
                 rawName: "v-mask",
-                value: "##-####",
-                expression: "'##-####'",
+                value: _vm.mask,
+                expression: "mask",
               },
             ],
             staticClass: "form-control",
-            attrs: { type: "text", maxlength: "12" },
+            attrs: { type: "text", maxlength: _vm.maxSize },
             domProps: { value: _vm.record.number },
             on: {
               input: function ($event) {
@@ -81020,7 +81035,7 @@ var render = function () {
           attrs: {
             disabled: _vm.disableButton,
             type: "button",
-            value: "Excluir",
+            value: "Delete",
           },
           on: { click: _vm.destroy },
         }),
@@ -81141,10 +81156,10 @@ var render = function () {
     _c("div", { staticClass: "form-row mb-2" }, [
       _c("div", { staticClass: "col" }, [
         _vm._v(
-          "\n            to confirm the deletion, you must enter the number ("
+          "\n            to confirm the deletion, you must enter the number "
         ),
         _c("strong", [_vm._v(_vm._s(_vm.number.number))]),
-        _vm._v(") on the form field.\n        "),
+        _vm._v(" in the form field.\n        "),
       ]),
     ]),
     _vm._v(" "),
@@ -81157,8 +81172,8 @@ var render = function () {
             {
               name: "mask",
               rawName: "v-mask",
-              value: "##-####",
-              expression: "'##-####'",
+              value: _vm.mask,
+              expression: "mask",
             },
             {
               name: "model",
@@ -81192,7 +81207,7 @@ var render = function () {
           attrs: {
             disabled: _vm.disableButton,
             type: "button",
-            value: "Excluir",
+            value: "Delete",
           },
           on: { click: _vm.destroy },
         }),

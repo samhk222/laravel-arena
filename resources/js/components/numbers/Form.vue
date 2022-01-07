@@ -13,7 +13,7 @@
             </div>
             <div :class="[!customerWasInputed ? 'col-md-6' : 'col-md-12']">
                 <label>Number</label>
-                <input type="text" class="form-control" v-model="record.number" v-mask="'##-####'" maxlength="12" />
+                <input type="text" class="form-control" v-model="record.number" v-mask="mask" :maxlength="maxSize" />
             </div>
         </div>
         <div class="form-row" v-if="editMode">
@@ -47,11 +47,18 @@
                 type: Array,
                 default: () => [],
             },
+            mask: {
+                type: String,
+                default: "",
+            },
         },
         components: { CustomersSelect },
         computed: {
             customerWasInputed() {
                 return this.customerId !== null && this.record.customer_id !== null;
+            },
+            maxSize() {
+                return this.mask.length;
             },
         },
         mixins: [],

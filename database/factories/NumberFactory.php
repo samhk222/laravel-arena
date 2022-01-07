@@ -27,7 +27,7 @@ class NumberFactory extends Factory
                 $element = $this->faker->randomElement($status);
                 return $element['id'];
             },
-            'number'      => $this->faker->randomNumber(6),
+            'number'      => $this->faker->numerify(\config('custom.mask')),
         ];
     }
 

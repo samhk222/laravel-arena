@@ -15,8 +15,9 @@ class NumberController extends Controller
      */
     public function index()
     {
-        $statuses = (new StatusRepository())->filter('allow_numbers');
+        $statuses    = (new StatusRepository())->filter('allow_numbers');
+        $number_mask = \config('custom.mask');
 
-        return view('numbers.index', \compact('statuses'));
+        return view('numbers.index', \compact('statuses', 'number_mask'));
     }
 }
