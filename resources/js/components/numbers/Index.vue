@@ -1,6 +1,7 @@
 <script>
     import NumberApi from "@/vue/api/endpoints/Numbers";
     import pagination from "laravel-vue-pagination";
+    import EventBus from "@/event-bus";
 
     export default {
         name: "NumberIndex",
@@ -20,6 +21,9 @@
         },
         created() {
             this.getResults();
+            EventBus.$on("DESTROY_NUMBER", (number) => {
+                this.deleteByIndex(this.records.data, number.id);
+            });
         },
         watch: {
             searchInput: function () {

@@ -48,10 +48,7 @@
                 return this.records.data.findIndex((el) => el.id === id);
             },
             deleteByIndex(data, id) {
-                data.splice(
-                    data.findIndex((el) => el.id === id),
-                    1
-                );
+                data.splice(this.findRecordById(id), 1);
             },
             recordCreated(record) {
                 this.records.data.unshift(record);

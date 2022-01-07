@@ -25,8 +25,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('home');
-    Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
-    Route::get('/numbers', [NumberController::class, 'index'])->name('numbers');
+    Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::get('/numbers', [NumberController::class, 'index'])->name('numbers.index');
 
     Route::get('/customers/{customer}/numbers', [CustomerNumberController::class, 'index'])->name('customers-phone');
 });

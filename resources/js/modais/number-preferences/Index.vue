@@ -1,5 +1,5 @@
 <template>
-    <div id="placeholder">
+    <div id="modal-container">
         <h3>Preferences - {{ number.number }}</h3>
         <div v-if="!hasItems">No preferences found</div>
         <table width="90%" class="table table-striped table-bordered table-condensed table-hover" v-else>
@@ -54,8 +54,3 @@
         },
     };
 </script>
-<style lang="scss" scoped>
-    #placeholder {
-        margin: 20px;
-    }
-</style>

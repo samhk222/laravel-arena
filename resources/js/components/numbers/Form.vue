@@ -9,7 +9,7 @@
         <div class="form-row">
             <div class="col-md-6" v-if="!customerWasInputed">
                 <label>Customer</label>
-                <customers-select @change="record.customer_id = $event"></customers-select>
+                <customers-select @change="record.customer_id = $event" :customer-id="record.customer_id"></customers-select>
             </div>
             <div :class="[!customerWasInputed ? 'col-md-6' : 'col-md-12']">
                 <label>Number</label>
@@ -51,7 +51,7 @@
         components: { CustomersSelect },
         computed: {
             customerWasInputed() {
-                return this.customerId !== null;
+                return this.customerId !== null && this.record.customer_id !== null;
             },
         },
         mixins: [],
@@ -91,7 +91,8 @@
                     NumberApi.update(this.record.id, this.record)
                         .then((response) => {
                             this.$emit("edited", response.data);
-                            this.clearObject();
+                            this.clearObject("customer_id");
+                            this.editMode = false;
                             this.success_message = "Number updated";
                         })
                         .catch((e) => {

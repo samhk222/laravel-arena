@@ -60,6 +60,14 @@ class NumberController
         return new NumberResource($number->refresh());
     }
 
+    public function destroy(Number $number)
+    {
+        $number->number_preferences()->delete();
+        $number->delete();
+
+        return response()->json(['msg' => "Number deleted"]);
+    }
+
     /**
      * @param Number $number
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection

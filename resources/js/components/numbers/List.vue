@@ -9,8 +9,9 @@
                     <th width="*">Customer</th>
                     <th width="10%">Status</th>
                     <th width="5%">Created at</th>
-                    <th width="1%" nowrap>Edit</th>
-                    <th width="1%" nowrap>Preferences</th>
+                    <th width="2%" class="text-center" nowrap>Edit</th>
+                    <th width="2%" class="text-center" nowrap>Preferences</th>
+                    <th width="2%" class="text-center" nowrap>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,12 @@
                             <i class="fas fa-broadcast-tower fa-stack-1x"></i>
                         </span>
                     </td>
+                    <td class="text-center pointer" @click="openDelete(number)">
+                        <span class="fa-stack fa-1x pointer delete">
+                            <i class="far fa-square fa-stack-2x"></i>
+                            <i class="fas fa-trash-alt fa-stack-1x"></i>
+                        </span>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -41,6 +48,7 @@
     import EventBus from "@/event-bus";
     import LoadingBar from "../../vue/shared/LoadingBar.vue";
     import NumberPreferenceModal from "@/modais/number-preferences/Index.vue";
+    import NumberDeleteModal from "@/modais/number/Delete.vue";
     import NumberApi from "@/vue/api/endpoints/Numbers";
 
     export default {
@@ -55,7 +63,7 @@
                 default: () => {},
             },
         },
-        components: { LoadingBar, NumberPreferenceModal },
+        components: { LoadingBar, NumberPreferenceModal, NumberDeleteModal },
         mixins: [],
         data() {
             return {};
@@ -64,7 +72,6 @@
         methods: {
             openPreferences(number) {
                 NumberApi.preferences(number.id).then((response) => {
-                    this.clearMessages();
                     this.$modal.show(
                         NumberPreferenceModal,
                         {
@@ -74,6 +81,15 @@
                         { width: 800, scrollable: true, height: 500 }
                     );
                 });
+            },
+            openDelete(number) {
+                this.$modal.show(
+                    NumberDeleteModal,
+                    {
+                        number: number,
+                    },
+                    { width: 800, scrollable: true, height: 300 }
+                );
             },
             emitEdit(id) {
                 EventBus.$emit("NUMBER_EDIT", id);

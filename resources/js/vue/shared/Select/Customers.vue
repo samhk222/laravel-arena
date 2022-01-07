@@ -1,6 +1,6 @@
 <template>
     <div>
-        <treeselect v-model="customer_id" :multiple="false" :clearable="false" :async="true" :load-options="loadOptions" search-prompt-text="Type customer name or phone ..." />
+        <treeselect v-model="customer_id" :multiple="false" :clearable="false" :async="true" :load-options="loadOptions" search-prompt-text="Type customer name ..." />
     </div>
 </template>
 <script>
@@ -12,7 +12,12 @@
         name: "SharedCustomers",
         components: { Treeselect },
         mixins: [],
-        props: {},
+        props: {
+            customerId: {
+                type: [Number, String],
+                default: 0,
+            },
+        },
         data() {
             return {
                 customers: [],
@@ -20,6 +25,11 @@
             };
         },
         watch: {
+            customerId(newVal) {
+                if (newVal != 0) {
+                    this.customer_id = this.customerId;
+                }
+            },
             customer_id(newVal) {
                 this.$emit("change", newVal);
             },
