@@ -26,16 +26,17 @@ class CustomerFactory extends Factory
                 return $element['id'];
             },
             'name'      => $this->faker->name(),
-            'document'  => $this->faker->name(),
+            'document'  => $this->faker->numerify('########'),
         ];
     }
 
-    public function configure()
+    public function defaultStatus()
     {
-        return $this->afterMaking(function (Customer $customer) {
-//            dd($customer);
-        })->afterCreating(function (Customer $customer) {
-//            dd($customer);
+        return $this->state(function (array $attributes) {
+            $status = (new StatusRepository())->where(['description' => Customer::NEW_STATUS])->first();
+            return [
+                'status_id' => $status->id,
+            ];
         });
     }
 }

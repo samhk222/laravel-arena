@@ -38,4 +38,15 @@ class NumberFactory extends Factory
             \event(new Created($number->getKey()));
         });
     }
+
+    public function defaultStatus()
+    {
+        return $this->state(function (array $attributes) {
+            $status = (new StatusRepository())->where(['description' => Number::NEW_STATUS])->first();
+            return [
+                'status_id' => $status->id,
+            ];
+        });
+    }
+
 }
