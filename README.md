@@ -16,3 +16,11 @@ You can test this project creating an `free tier` instance on amazon ec2 (i choo
 4. `./.start.sh #to run instalation script, or just type the commands that are inside that file`
 5. Add `127.0.0.1 laravel-arena.local` at the end of you `/etc/hosts` file
 6. Navigate to http://laravel-arena.local (or http://0.0.0.0)
+
+## Users
+The migrations already populate the database with two users.
+
+| User | E-mail | Password |
+| ------- | ----------------- | --- |
+| Admin        | admin@admin.com                  | asdasd |
+| Regular user        | user@user.com                  | asdasd |
