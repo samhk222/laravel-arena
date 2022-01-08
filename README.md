@@ -20,7 +20,14 @@ You can test this project creating an `free tier` instance on amazon ec2 (i choo
 ## Users
 The migrations already populate the database with two users.
 
+
 | User | E-mail | Password |
 | ------- | ----------------- | --- |
 | Admin        | admin@admin.com                  | asdasd |
 | Regular user        | user@user.com                  | asdasd |
+
+## Test
+To run the tests, just execute `docker exec ARENA-nginx vendor/bin/phpunit`
+
+## Screenshots
+![screen-gif](./.docs/scren.gif)
