@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\NumberController;
 use App\Http\Controllers\Api\NumberPreferencesController;
 use Illuminate\Http\Request;
@@ -23,4 +24,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/number-preferences', class_basename(NumberPreferencesController::class));
 
     Route::get('/number/{number}/preferences', [NumberController::class, 'preferences']);
+    Route::get('/dashboard/grouped-by-status', [DashboardController::class, 'getGroupedBy']);
 });
