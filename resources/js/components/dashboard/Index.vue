@@ -1,8 +1,9 @@
 <script>
     import NumbersByStatus from "../graphs/NumbersByStatus";
+    import CustomersByStatus from "../graphs/CustomersByStatus";
     export default {
         name: "DashboardIndex",
-        components: { NumbersByStatus },
+        components: { NumbersByStatus, CustomersByStatus },
         data: () => ({
             options: {
                 chart: {

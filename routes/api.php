@@ -24,5 +24,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/number-preferences', class_basename(NumberPreferencesController::class));
 
     Route::get('/number/{number}/preferences', [NumberController::class, 'preferences']);
-    Route::get('/dashboard/grouped-by-status', [DashboardController::class, 'getGroupedBy']);
+    Route::get('/dashboard/get-numbers-grouped-by-status', [DashboardController::class, 'getNumbersGroupedByStatus']);
+    Route::get('/dashboard/get-customers-grouped-by-status', [DashboardController::class, 'getCustomersByStatus']);
 });

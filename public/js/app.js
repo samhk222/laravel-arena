@@ -9809,11 +9809,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _graphs_NumbersByStatus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../graphs/NumbersByStatus */ "./resources/js/components/graphs/NumbersByStatus.vue");
+/* harmony import */ var _graphs_CustomersByStatus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../graphs/CustomersByStatus */ "./resources/js/components/graphs/CustomersByStatus.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "DashboardIndex",
   components: {
-    NumbersByStatus: _graphs_NumbersByStatus__WEBPACK_IMPORTED_MODULE_0__["default"]
+    NumbersByStatus: _graphs_NumbersByStatus__WEBPACK_IMPORTED_MODULE_0__["default"],
+    CustomersByStatus: _graphs_CustomersByStatus__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -9830,6 +9833,68 @@ __webpack_require__.r(__webpack_exports__);
         data: [55, 62, 89, 66, 98, 72, 101, 75, 94, 120, 117, 139]
       }]
     };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/graphs/CustomersByStatus.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/graphs/CustomersByStatus.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
+/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vue_api_endpoints_Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/vue/api/endpoints/Dashboard */ "./resources/js/vue/api/endpoints/Dashboard.js");
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "CustomersGroupedByStatus",
+  props: {},
+  components: {
+    apexchart: (vue_apexcharts__WEBPACK_IMPORTED_MODULE_0___default())
+  },
+  mixins: [],
+  data: function data() {
+    return {
+      options: {
+        legend: {
+          show: true,
+          position: "top"
+        },
+        labels: []
+      },
+      series: []
+    };
+  },
+  created: function created() {
+    this.getData();
+  },
+  methods: {
+    getData: function getData() {
+      var _this = this;
+
+      _vue_api_endpoints_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"].getCustomersGroupedByStatus().then(function (r) {
+        var labels = [];
+        var values = [];
+        _this.options = {
+          labels: Object.keys(r)
+        };
+        _this.series = Object.values(r);
+      });
+    },
+    change: function change() {}
   }
 });
 
@@ -9886,7 +9951,7 @@ __webpack_require__.r(__webpack_exports__);
     getData: function getData() {
       var _this = this;
 
-      _vue_api_endpoints_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"].getGroupedByStatus().then(function (r) {
+      _vue_api_endpoints_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"].getNumbersGroupedByStatus().then(function (r) {
         var categories = [];
         var values = [];
         var colors = [];
@@ -11635,14 +11700,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }
 
   _createClass(Dashboard, [{
-    key: "getGroupedByStatus",
+    key: "getNumbersGroupedByStatus",
     value: function () {
-      var _getGroupedByStatus = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var _getNumbersGroupedByStatus = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                return _context.abrupt("return", this.api.get("/api/v1/dashboard/grouped-by-status").then(_utils_getData__WEBPACK_IMPORTED_MODULE_2__["default"]));
+                return _context.abrupt("return", this.api.get("/api/v1/dashboard/get-numbers-grouped-by-status").then(_utils_getData__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
               case 1:
               case "end":
@@ -11652,11 +11717,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee, this);
       }));
 
-      function getGroupedByStatus() {
-        return _getGroupedByStatus.apply(this, arguments);
+      function getNumbersGroupedByStatus() {
+        return _getNumbersGroupedByStatus.apply(this, arguments);
       }
 
-      return getGroupedByStatus;
+      return getNumbersGroupedByStatus;
+    }()
+  }, {
+    key: "getCustomersGroupedByStatus",
+    value: function () {
+      var _getCustomersGroupedByStatus = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", this.api.get("/api/v1/dashboard/get-customers-grouped-by-status").then(_utils_getData__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getCustomersGroupedByStatus() {
+        return _getCustomersGroupedByStatus.apply(this, arguments);
+      }
+
+      return getCustomersGroupedByStatus;
     }()
   }]);
 
@@ -79652,6 +79741,45 @@ component.options.__file = "resources/js/components/dashboard/Index.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/graphs/CustomersByStatus.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/graphs/CustomersByStatus.vue ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CustomersByStatus_vue_vue_type_template_id_4389351f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CustomersByStatus.vue?vue&type=template&id=4389351f& */ "./resources/js/components/graphs/CustomersByStatus.vue?vue&type=template&id=4389351f&");
+/* harmony import */ var _CustomersByStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CustomersByStatus.vue?vue&type=script&lang=js& */ "./resources/js/components/graphs/CustomersByStatus.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CustomersByStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CustomersByStatus_vue_vue_type_template_id_4389351f___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CustomersByStatus_vue_vue_type_template_id_4389351f___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/graphs/CustomersByStatus.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/graphs/NumbersByStatus.vue":
 /*!************************************************************!*\
   !*** ./resources/js/components/graphs/NumbersByStatus.vue ***!
@@ -80260,6 +80388,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/graphs/CustomersByStatus.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/graphs/CustomersByStatus.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomersByStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CustomersByStatus.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/graphs/CustomersByStatus.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomersByStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/graphs/NumbersByStatus.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/graphs/NumbersByStatus.vue?vue&type=script&lang=js& ***!
@@ -80514,6 +80658,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_77478d7a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_template_id_77478d7a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./List.vue?vue&type=template&id=77478d7a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/customers/List.vue?vue&type=template&id=77478d7a&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/graphs/CustomersByStatus.vue?vue&type=template&id=4389351f&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/graphs/CustomersByStatus.vue?vue&type=template&id=4389351f& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomersByStatus_vue_vue_type_template_id_4389351f___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomersByStatus_vue_vue_type_template_id_4389351f___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomersByStatus_vue_vue_type_template_id_4389351f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CustomersByStatus.vue?vue&type=template&id=4389351f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/graphs/CustomersByStatus.vue?vue&type=template&id=4389351f&");
 
 
 /***/ }),
@@ -81046,6 +81207,44 @@ var render = function () {
               ),
             ]
           ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/graphs/CustomersByStatus.vue?vue&type=template&id=4389351f&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/graphs/CustomersByStatus.vue?vue&type=template&id=4389351f& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("apexchart", {
+        attrs: {
+          width: "380",
+          type: "donut",
+          options: _vm.options,
+          series: _vm.series,
+        },
+      }),
     ],
     1
   )

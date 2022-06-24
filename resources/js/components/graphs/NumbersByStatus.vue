@@ -34,7 +34,7 @@
         },
         methods: {
             getData() {
-                DashboardApi.getGroupedByStatus().then((r) => {
+                DashboardApi.getNumbersGroupedByStatus().then((r) => {
                     let categories = [];
                     let values = [];
                     let colors = [];
