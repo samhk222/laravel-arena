@@ -60,6 +60,10 @@ class NumberController
         return new NumberResource($number->refresh());
     }
 
+    /**
+     * @param Number $number
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy(Number $number)
     {
         $number->number_preferences()->delete();
@@ -76,4 +80,6 @@ class NumberController
     {
         return NumberPreferencesResource::collection($number->number_preferences);
     }
+
+
 }

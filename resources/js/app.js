@@ -49,6 +49,7 @@ Vue.component('customers-list', require('./components/customers/List.vue').defau
 Vue.component('numbers-index', require('./components/numbers/Index.vue').default);
 Vue.component('numbers-form', require('./components/numbers/Form.vue').default);
 Vue.component('numbers-list', require('./components/numbers/List.vue').default);
+Vue.component('dashboard-index', require('./components/dashboard/Index.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
