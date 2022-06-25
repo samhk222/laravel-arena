@@ -5,6 +5,20 @@
         name: "DashboardIndex",
         components: { NumbersByStatus, CustomersByStatus },
         data: () => ({
+            steps: [
+                {
+                    target: ".inner", // We're using document.querySelector() under the hood
+                    content: `Discover <strong>Vue Tour</strong>!`,
+                },
+                {
+                    target: "#teste", // We're using document.querySelector() under the hood
+                    content: `Olha que top`,
+                },
+                {
+                    target: "#teste2", // We're using document.querySelector() under the hood
+                    content: `Olha que inner`,
+                },
+            ],
             options: {
                 chart: {
                     id: "vuechart-example",
@@ -20,5 +34,8 @@
                 },
             ],
         }),
+        mounted() {
+            this.$tours["myTour"].start();
+        },
     };
 </script>

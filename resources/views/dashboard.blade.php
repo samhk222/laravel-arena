@@ -52,6 +52,9 @@
                     Only admins can see this alert ;).
                 </div>
             @endcan
+            <teste id="#teste"></teste>
+
+            <v-tour name="myTour" :steps="steps"></v-tour>
         </div>
     </dashboard-index>
 @stop

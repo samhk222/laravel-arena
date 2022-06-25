@@ -10,6 +10,7 @@
         mixins: [],
         data() {
             return {
+                steps: [],
                 searchInput: null,
                 isLoading: false,
             };
