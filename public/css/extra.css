@@ -1,1 +1,11 @@
-#modal-container{margin:20px}.pointer{cursor:pointer}.delete{color:red}
+#modal-container {
+    margin: 20px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.delete{
+    color:red;
+}
