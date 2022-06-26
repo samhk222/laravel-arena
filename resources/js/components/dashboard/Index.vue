@@ -1,10 +1,26 @@
 <script>
     import NumbersByStatus from "../graphs/NumbersByStatus";
     import CustomersByStatus from "../graphs/CustomersByStatus";
+    import Test from "../Test";
+    import html from "../SPC.js";
     export default {
         name: "DashboardIndex",
-        components: { NumbersByStatus, CustomersByStatus },
+        components: { NumbersByStatus, CustomersByStatus, Test },
         data: () => ({
+            steps: [
+                {
+                    target: ".inner", // We're using document.querySelector() under the hood
+                    content: html,
+                },
+                {
+                    target: "#teste2", // We're using document.querySelector() under the hood
+                    content: `Olha que inner`,
+                },
+                {
+                    content: `Discover <strong>Vue Tour</strong>!`,
+                    target: "#teste4", // We're using document.querySelector() under the hood
+                },
+            ],
             options: {
                 chart: {
                     id: "vuechart-example",
@@ -20,5 +36,8 @@
                 },
             ],
         }),
+        mounted() {
+            this.$tours["myTour"].start();
+        },
     };
 </script>

@@ -35,7 +35,7 @@
                 </div>
 
             </x-card>
-
         </div>
+
     </customers-index>
 @stop
