@@ -30,7 +30,7 @@
                                     class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" id="teste4">
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $total_customers }}</h3>
@@ -52,7 +52,9 @@
                     Only admins can see this alert ;).
                 </div>
             @endcan
-            <teste id="#teste"></teste>
+            <span id="teste2">
+                <teste></teste>
+            </span>
 
             <v-tour name="myTour" :steps="steps"></v-tour>
         </div>

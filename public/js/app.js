@@ -9841,28 +9841,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _graphs_NumbersByStatus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../graphs/NumbersByStatus */ "./resources/js/components/graphs/NumbersByStatus.vue");
 /* harmony import */ var _graphs_CustomersByStatus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../graphs/CustomersByStatus */ "./resources/js/components/graphs/CustomersByStatus.vue");
+/* harmony import */ var _Test__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Test */ "./resources/js/components/Test.vue");
+/* harmony import */ var _SPC_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../SPC.js */ "./resources/js/components/SPC.js");
+
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "DashboardIndex",
   components: {
     NumbersByStatus: _graphs_NumbersByStatus__WEBPACK_IMPORTED_MODULE_0__["default"],
-    CustomersByStatus: _graphs_CustomersByStatus__WEBPACK_IMPORTED_MODULE_1__["default"]
+    CustomersByStatus: _graphs_CustomersByStatus__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Test: _Test__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
       steps: [{
         target: ".inner",
         // We're using document.querySelector() under the hood
-        content: "Discover <strong>Vue Tour</strong>!"
-      }, {
-        target: "#teste",
-        // We're using document.querySelector() under the hood
-        content: "Olha que top"
+        content: _SPC_js__WEBPACK_IMPORTED_MODULE_3__["default"]
       }, {
         target: "#teste2",
         // We're using document.querySelector() under the hood
         content: "Olha que inner"
+      }, {
+        content: "Discover <strong>Vue Tour</strong>!",
+        target: "#teste4" // We're using document.querySelector() under the hood
+
       }],
       options: {
         chart: {
@@ -11258,6 +11263,22 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/SPC.js":
+/*!****************************************!*\
+  !*** ./resources/js/components/SPC.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var html = "\n    asdasd\n    aqui vou <strong>Pode ter negrito</strong> os steps etc\n";
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (html);
 
 /***/ }),
 
